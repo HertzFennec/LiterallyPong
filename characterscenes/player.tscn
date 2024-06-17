@@ -2,7 +2,6 @@
 
 [node name="Player" type="CharacterBody2D"]
 disable_mode = 2
-floor_stop_on_slope = false
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 scale = Vector2(9.753, 5)

@@ -29,7 +29,7 @@ size = Vector2(20, 22)
 
 [node name="pong_arena" type="Node2D"]
 
-[node name="Top" type="Area2D" parent="."]
+[node name="Top" type="StaticBody2D" parent="."]
 position = Vector2(0, 16)
 disable_mode = 2
 collision_layer = 3
@@ -43,7 +43,7 @@ shape = SubResource("RectangleShape2D_vudwl")
 color = Color(0.596078, 1, 1, 1)
 polygon = PackedVector2Array(0, -24, 0, -24, 0, 0, 1152, 0, 1152, -24)
 
-[node name="Left" type="Area2D" parent="."]
+[node name="Left" type="StaticBody2D" parent="."]
 position = Vector2(16, 0)
 disable_mode = 2
 collision_layer = 3
@@ -57,7 +57,7 @@ shape = SubResource("RectangleShape2D_o6l33")
 color = Color(0.596078, 1, 1, 1)
 polygon = PackedVector2Array(-24, 0, 0, 0, 0, 648, -24, 648)
 
-[node name="Bottom" type="Area2D" parent="."]
+[node name="Bottom" type="StaticBody2D" parent="."]
 position = Vector2(0, -24)
 disable_mode = 2
 collision_layer = 3
@@ -71,7 +71,7 @@ shape = SubResource("RectangleShape2D_88hym")
 color = Color(0.596078, 1, 1, 1)
 polygon = PackedVector2Array(0, 648, 0, 672, 1152, 672, 1152, 648)
 
-[node name="Right" type="Area2D" parent="."]
+[node name="Right" type="StaticBody2D" parent="."]
 position = Vector2(-16, 0)
 disable_mode = 2
 collision_layer = 3
@@ -95,7 +95,7 @@ platform_wall_layers = 255
 safe_margin = 10.0
 script = ExtResource("2_np4u2")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Player"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(10, 50)
 shape = SubResource("RectangleShape2D_8nfwf")
 

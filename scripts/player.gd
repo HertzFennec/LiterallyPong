@@ -1,6 +1,6 @@
 extends CharacterBody2D
 const SPEED = 350.0
-@export var friction = 0.05
+@export var friction = 0.2
 
 func _physics_process(delta):
 	var direction = get_axis()
