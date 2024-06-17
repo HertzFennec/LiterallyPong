@@ -1,0 +1,79 @@
+[gd_scene load_steps=9 format=3 uid="uid://n5rcmwt5tse0"]
+
+[ext_resource type="PackedScene" uid="uid://dd71638anxd0y" path="res://characterscenes/player.tscn" id="1_vofcw"]
+[ext_resource type="PackedScene" uid="uid://dtdt62c3q1k7r" path="res://characterscenes/opponent.tscn" id="2_3pysx"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="2_np4u2"]
+[ext_resource type="PackedScene" uid="uid://bcvc5yqwn4qx" path="res://characterscenes/ball.tscn" id="3_sanen"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vudwl"]
+size = Vector2(1152, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6l33"]
+size = Vector2(20, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88hym"]
+size = Vector2(1152, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78ghq"]
+size = Vector2(20, 648)
+
+[node name="pong_arena" type="Node2D"]
+
+[node name="Top" type="Area2D" parent="."]
+position = Vector2(0, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+position = Vector2(576, -10.5)
+shape = SubResource("RectangleShape2D_vudwl")
+
+[node name="Polygon2D" type="Polygon2D" parent="Top"]
+color = Color(0.596078, 1, 1, 1)
+polygon = PackedVector2Array(0, -24, 0, -24, 0, 0, 1152, 0, 1152, -24)
+
+[node name="Left" type="Area2D" parent="."]
+position = Vector2(16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2(-10, 324)
+shape = SubResource("RectangleShape2D_o6l33")
+
+[node name="Polygon2D" type="Polygon2D" parent="Left"]
+color = Color(0.596078, 1, 1, 1)
+polygon = PackedVector2Array(-24, 0, 0, 0, 0, 648, -24, 648)
+
+[node name="Bottom" type="Area2D" parent="."]
+position = Vector2(0, -24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
+position = Vector2(576, 658)
+shape = SubResource("RectangleShape2D_88hym")
+
+[node name="Polygon2D" type="Polygon2D" parent="Bottom"]
+color = Color(0.596078, 1, 1, 1)
+polygon = PackedVector2Array(0, 648, 0, 672, 1152, 672, 1152, 648)
+
+[node name="Right" type="Area2D" parent="."]
+position = Vector2(-16, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2(1162, 324)
+shape = SubResource("RectangleShape2D_78ghq")
+
+[node name="Polygon2D" type="Polygon2D" parent="Right"]
+color = Color(0.596078, 1, 1, 1)
+polygon = PackedVector2Array(1152, 0, 1176, 0, 1176, 648, 1152, 648)
+
+[node name="Player" parent="." instance=ExtResource("1_vofcw")]
+position = Vector2(1088, 272)
+slide_on_ceiling = false
+floor_stop_on_slope = false
+platform_on_leave = 2
+platform_wall_layers = 255
+safe_margin = 0.001
+script = ExtResource("2_np4u2")
+
+[node name="Opponent" parent="." instance=ExtResource("2_3pysx")]
+position = Vector2(40, 272)
+
+[node name="Ball" parent="." instance=ExtResource("3_sanen")]
+position = Vector2(568, 312)
