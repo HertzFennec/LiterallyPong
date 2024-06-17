@@ -1,15 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dd71638anxd0y"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ld8od"]
-size = Vector2(20, 100)
+[gd_scene format=3 uid="uid://dd71638anxd0y"]
 
 [node name="Player" type="CharacterBody2D"]
+disable_mode = 2
+floor_stop_on_slope = false
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 scale = Vector2(9.753, 5)
 color = Color(0.596078, 1, 1, 1)
 polygon = PackedVector2Array(2.05153, 0, 2.05153, 20, 0, 20, 0, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(10, 50)
-shape = SubResource("RectangleShape2D_ld8od")

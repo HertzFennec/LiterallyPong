@@ -11,7 +11,7 @@ func _physics_process(delta):
 		0:
 			velocity = lerp(currentVelocity, Vector2.ZERO, friction)
 	position += velocity * delta
-	print(direction)
+	# print(direction)
 	move_and_slide()
 	
 func get_axis(): #function called to get direction based on input
