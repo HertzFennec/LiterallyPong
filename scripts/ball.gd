@@ -15,6 +15,7 @@ func _physics_process(delta):
 			direction = Vector2(direction.x, -direction.y)
 		else:
 			direction = Vector2(-direction.x, direction.y)
+		velocity = velocity.bounce(collision.get_normal())
 	else:
 		velocity = direction * SPEED
 	position += velocity * delta
