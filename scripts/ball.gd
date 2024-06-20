@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 var direction = Vector2.ZERO
+signal tellOpponent(currentPosition)
 func _ready(): #picks a random direction for the ball upon opening the scene/game, and sets an intial velocity Vector
 	direction.x = [-1, 1].pick_random()
 	direction.y = [-1, 1].pick_random()
@@ -15,8 +16,9 @@ func _physics_process(delta):
 			direction = Vector2(direction.x, -direction.y)
 		else:
 			direction = Vector2(-direction.x, direction.y)
-		velocity = velocity.bounce(collision.get_normal())
+		velocity = velocity.bounce(collision.get_normal()) #I have no fucking idea how this works but this is what fixed the "jiggling" issue
 	else:
 		velocity = direction * SPEED
 	position += velocity * delta
+	emit_signal("tellOpponent", position)
 	print(direction)

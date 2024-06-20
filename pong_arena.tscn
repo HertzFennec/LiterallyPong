@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://n5rcmwt5tse0"]
+[gd_scene load_steps=14 format=3 uid="uid://n5rcmwt5tse0"]
 
 [ext_resource type="PackedScene" uid="uid://dd71638anxd0y" path="res://characterscenes/player.tscn" id="1_vofcw"]
 [ext_resource type="PackedScene" uid="uid://dtdt62c3q1k7r" path="res://characterscenes/opponent.tscn" id="2_3pysx"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="2_np4u2"]
 [ext_resource type="PackedScene" uid="uid://bcvc5yqwn4qx" path="res://characterscenes/ball.tscn" id="3_sanen"]
+[ext_resource type="Script" path="res://scripts/opponent.gd" id="4_jkxs2"]
 [ext_resource type="Script" path="res://scripts/ball.gd" id="5_govms"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vudwl"]
@@ -100,6 +101,7 @@ shape = SubResource("RectangleShape2D_8nfwf")
 
 [node name="Opponent" parent="." instance=ExtResource("2_3pysx")]
 position = Vector2(40, 272)
+script = ExtResource("4_jkxs2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Opponent"]
 position = Vector2(10, 50)
@@ -112,3 +114,5 @@ script = ExtResource("5_govms")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
 position = Vector2(10, 11)
 shape = SubResource("RectangleShape2D_c6kb2")
+
+[connection signal="tellOpponent" from="Ball" to="Opponent" method="_on_ball_tell_opponent"]
