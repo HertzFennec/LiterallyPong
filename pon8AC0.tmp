@@ -1,0 +1,118 @@
+[gd_scene load_steps=14 format=3 uid="uid://n5rcmwt5tse0"]
+
+[ext_resource type="PackedScene" uid="uid://dd71638anxd0y" path="res://characterscenes/player.tscn" id="1_vofcw"]
+[ext_resource type="PackedScene" uid="uid://dtdt62c3q1k7r" path="res://characterscenes/opponent.tscn" id="2_3pysx"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="2_np4u2"]
+[ext_resource type="PackedScene" uid="uid://bcvc5yqwn4qx" path="res://characterscenes/ball.tscn" id="3_sanen"]
+[ext_resource type="Script" path="res://scripts/opponent.gd" id="4_jkxs2"]
+[ext_resource type="Script" path="res://scripts/ball.gd" id="5_govms"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vudwl"]
+size = Vector2(1152, 21)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o6l33"]
+size = Vector2(20, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_88hym"]
+size = Vector2(1152, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78ghq"]
+size = Vector2(20, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nfwf"]
+size = Vector2(20, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ylec"]
+size = Vector2(20, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c6kb2"]
+size = Vector2(20, 22)
+
+[node name="pong_arena" type="Node2D"]
+
+[node name="Top" type="StaticBody2D" parent="."]
+position = Vector2(0, 16)
+disable_mode = 2
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+position = Vector2(576, -10.5)
+shape = SubResource("RectangleShape2D_vudwl")
+
+[node name="Polygon2D" type="Polygon2D" parent="Top"]
+color = Color(0.596078, 1, 1, 1)
+polygon = PackedVector2Array(0, -24, 0, -24, 0, 0, 1152, 0, 1152, -24)
+
+[node name="Left" type="StaticBody2D" parent="."]
+position = Vector2(16, 0)
+disable_mode = 2
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2(-10, 324)
+shape = SubResource("RectangleShape2D_o6l33")
+
+[node name="Polygon2D" type="Polygon2D" parent="Left"]
+color = Color(0.596078, 1, 1, 1)
+polygon = PackedVector2Array(-24, 0, 0, 0, 0, 648, -24, 648)
+
+[node name="Bottom" type="StaticBody2D" parent="."]
+position = Vector2(0, -24)
+disable_mode = 2
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom"]
+position = Vector2(576, 658)
+shape = SubResource("RectangleShape2D_88hym")
+
+[node name="Polygon2D" type="Polygon2D" parent="Bottom"]
+color = Color(0.596078, 1, 1, 1)
+polygon = PackedVector2Array(0, 648, 0, 672, 1152, 672, 1152, 648)
+
+[node name="Right" type="StaticBody2D" parent="."]
+position = Vector2(-16, 0)
+disable_mode = 2
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2(1162, 324)
+shape = SubResource("RectangleShape2D_78ghq")
+
+[node name="Polygon2D" type="Polygon2D" parent="Right"]
+color = Color(0.596078, 1, 1, 1)
+polygon = PackedVector2Array(1152, 0, 1176, 0, 1176, 648, 1152, 648)
+
+[node name="Player" parent="." instance=ExtResource("1_vofcw")]
+position = Vector2(1088, 272)
+collision_layer = 3
+collision_mask = 3
+slide_on_ceiling = false
+platform_wall_layers = 255
+safe_margin = 10.0
+script = ExtResource("2_np4u2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(10, 50)
+shape = SubResource("RectangleShape2D_8nfwf")
+
+[node name="Opponent" parent="." instance=ExtResource("2_3pysx")]
+position = Vector2(40, 272)
+script = ExtResource("4_jkxs2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Opponent"]
+position = Vector2(10, 50)
+shape = SubResource("RectangleShape2D_0ylec")
+
+[node name="Ball" parent="." instance=ExtResource("3_sanen")]
+position = Vector2(568, 312)
+script = ExtResource("5_govms")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball"]
+position = Vector2(10, 11)
+shape = SubResource("RectangleShape2D_c6kb2")
+
+[connection signal="tellOpponent" from="Ball" to="Opponent" method="_on_ball_tell_opponent"]

@@ -4,16 +4,16 @@ extends CharacterBody2D
 const SPEED = 300.0
 @export var friction = 0.2
 var ballPosition = Vector2(0, 0)
-@export var rate = 20
+@export var rate = 100
 
 func _physics_process(delta):
 	var direction = get_axis(ballPosition)
 	var currentVelocity = get_real_velocity()
+	var distance = abs(ballPosition.y - position.y)
 	match direction:
-		-1: #ok, so apparently OR will cause it to only choose one or the other. use "," instead.
-			velocity.y = velocity.move_toward(ballPosition, rate).y * direction 
-		1:
-			velocity.y = velocity.move_toward(ballPosition, rate).y * direction 
+		-1, 1: #ok, so apparently OR will cause it to only choose one or the other. use "," instead
+			velocity = velocity.move_toward(Vector2(0, distance), rate) * direction
+	print(velocity.y)
 	position += velocity * delta
 	print(direction)
 	move_and_slide()
