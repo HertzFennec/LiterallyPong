@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://n5rcmwt5tse0"]
+[gd_scene load_steps=15 format=3 uid="uid://n5rcmwt5tse0"]
 
 [ext_resource type="PackedScene" uid="uid://dd71638anxd0y" path="res://characterscenes/player.tscn" id="1_vofcw"]
 [ext_resource type="PackedScene" uid="uid://dtdt62c3q1k7r" path="res://characterscenes/opponent.tscn" id="2_3pysx"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bcvc5yqwn4qx" path="res://characterscenes/ball.tscn" id="3_sanen"]
 [ext_resource type="Script" path="res://scripts/opponent.gd" id="4_jkxs2"]
 [ext_resource type="Script" path="res://scripts/ball.gd" id="5_govms"]
+[ext_resource type="Script" path="res://scripts/score.gd" id="7_jxo8d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vudwl"]
 size = Vector2(1152, 21)
@@ -115,4 +116,25 @@ script = ExtResource("5_govms")
 position = Vector2(10, 11)
 shape = SubResource("RectangleShape2D_c6kb2")
 
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+offset_left = 492.0
+offset_top = 80.0
+offset_right = 562.0
+offset_bottom = 120.0
+scale = Vector2(2.2, 1.84)
+theme_override_constants/separation = 50
+script = ExtResource("7_jxo8d")
+
+[node name="OpponentScore" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="PlayerScore" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "0"
+
 [connection signal="tellOpponent" from="Ball" to="Opponent" method="_on_ball_tell_opponent"]
+[connection signal="updateScore" from="Ball" to="HBoxContainer" method="_on_ball_update_score"]
+[connection signal="resetdeezNuts" from="HBoxContainer" to="Player" method="_on_h_box_container_resetdeez_nuts"]
+[connection signal="resetdeezNuts" from="HBoxContainer" to="Opponent" method="_on_h_box_container_resetdeez_nuts"]
+[connection signal="resetdeezNuts" from="HBoxContainer" to="Ball" method="_on_h_box_container_resetdeez_nuts"]
