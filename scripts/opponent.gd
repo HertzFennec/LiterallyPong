@@ -37,6 +37,3 @@ func get_axis(ball_pos):
 func _on_ball_tell_opponent(currentPosition):
 	ballPosition = currentPosition
 
-
-func _on_h_box_container_resetdeez_nuts():
-	pass # Replace with function body.

@@ -4,6 +4,7 @@ const SPEED = 300.0
 var direction = Vector2.ZERO
 signal tellOpponent(currentPosition)
 signal updateScore(scorer)
+
 func _ready(): #picks a random direction for the ball upon opening the scene/game, and sets an intial velocity Vector
 	direction.x = [-1, 1].pick_random()
 	direction.y = [-1, 1].pick_random()
@@ -30,7 +31,3 @@ func _physics_process(delta):
 	emit_signal("tellOpponent", position)
 	print(direction)
 	
-
-
-func _on_h_box_container_resetdeez_nuts():
-	pass # Replace with function body.

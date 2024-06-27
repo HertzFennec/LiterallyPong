@@ -22,6 +22,3 @@ func get_axis(): #function called to get direction based on input
 	else:
 		return 0
 
-
-func _on_h_box_container_resetdeez_nuts():
-	pass # Replace with function body.
